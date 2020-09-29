@@ -27,6 +27,7 @@ namespace HarcosProjekt
                 case 3: this.alapEletero = 8; this.alapSebzes = 5; break;
                 default: this.alapEletero = 12; this.alapSebzes = 4; break;
             }
+            this.eletero = alapEletero;
         }
 
         public string Nev { get => nev; set => nev = value; }

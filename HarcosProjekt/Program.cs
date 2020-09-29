@@ -10,6 +10,8 @@ namespace HarcosProjekt
     {
         static void Main(string[] args)
         {
+            Harcos PwnMaster = new Harcos("PwnMaster", 1);
+            Console.WriteLine(PwnMaster);
             Console.ReadKey();
         }
     }
