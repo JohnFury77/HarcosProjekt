@@ -12,7 +12,9 @@ namespace HarcosProjekt
 
         static void Main(string[] args)
         {
+            List<Harcos> harcosok; 
             Harcos PwnMaster = new Harcos("PwnMaster", 1);
+            harcosok.Add(PwnMaster);
             Console.WriteLine(PwnMaster);
             Console.ReadKey();
 

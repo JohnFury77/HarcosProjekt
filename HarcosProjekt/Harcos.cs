@@ -79,7 +79,7 @@ namespace HarcosProjekt
 
         public void Heal(Harcos harcos)
         {
-            if (harcos.Hp==0)
+            if (harcos.Hp<=0)
             {
                 harcos.Hp = harcos.MaxHp;
             }
