@@ -9,40 +9,40 @@ namespace HarcosProjekt
     class Harcos
     {
         string nev;
-        int szint;
-        int tapasztalat;
-        int eletero;
-        int alapEletero;
-        int alapSebzes;
+        int level;
+        int xp;
+        int hp;
+        int baseHp;
+        int baseAttack;
 
         public Harcos(string nev, int statuszSablon)
         {
             this.nev = nev;
-            szint = 1;
-            tapasztalat = 0;
+            level = 1;
+            xp = 0;
             switch (statuszSablon)
             {
-                case 1: this.alapEletero = 15; this.alapSebzes = 3; break;
-                case 2: this.alapEletero = 12; this.alapSebzes = 4; break;
-                case 3: this.alapEletero = 8; this.alapSebzes = 5; break;
-                default: this.alapEletero = 12; this.alapSebzes = 4; break;
+                case 1: this.baseHp = 15; this.baseAttack = 3; break;
+                case 2: this.baseHp = 12; this.baseAttack = 4; break;
+                case 3: this.baseHp = 8; this.baseAttack = 5; break;
+                default: this.baseHp = 12; this.baseAttack = 4; break;
             }
-            this.eletero = alapEletero;
+            this.hp = baseHp;
         }
 
         public string Nev { get => nev; set => nev = value; }
-        public int Szint { get => szint; set => szint = value; }
-        public int Tapasztalat { get => tapasztalat; set => tapasztalat = value; }
-        public int Eletero { get => eletero; set => eletero = value; }
-        public int AlapEletero { get => alapEletero; }
-        public int AlapSebzes { get => alapSebzes; }
-        public int Sebzes { get => alapSebzes+szint; }
-        public int SzintLepeshez { get => 10 + szint * 5; }
-        public int MaxEletero { get => alapEletero + szint * 3; }
+        public int Level { get => level; set => level = value; }
+        public int Xp { get => xp; set => xp = value; }
+        public int Hp { get => hp; set => hp = value; }
+        public int BaseHp { get => baseHp; }
+        public int BaseAttack { get => baseAttack; }
+        public int Attack { get => baseAttack+level; }
+        public int TillNextLevel { get => 10 + level * 5; }
+        public int MaxHp { get => baseHp + level * 3; }
 
         public override string ToString()
         {
-            return string.Format(nev + ":\nLVL: " + szint + "\nEXP: " + tapasztalat + "/" + SzintLepeshez + "\nHP: " + eletero + "/" + MaxEletero + "\nDMG: " + Sebzes);
+            return string.Format($"{nev}:\nLVL: {level}\nEXP: {xp}/{TillNextLevel}\nHP: {hp}/{MaxHp}\nDMG: {Attack}");
         }
         public void Megkuzd(Harcos masikHarcos, Harcos harcos)
         {
@@ -50,30 +50,30 @@ namespace HarcosProjekt
             {
                 Console.WriteLine("Ez nem az a játék.");
             }
-            else if (masikHarcos.eletero==0||harcos.eletero==0)
+            else if (masikHarcos.hp==0||harcos.hp==0)
             {
                 Console.WriteLine("Ő már meghalt.");
             }
-            masikHarcos.eletero -= harcos.Sebzes;
-            if (masikHarcos.eletero>0)
+            masikHarcos.hp -= harcos.Attack;
+            if (masikHarcos.hp>0)
             {
-                harcos.eletero -= masikHarcos.Sebzes;
+                harcos.hp -= masikHarcos.Attack;
             }
-            if (harcos.eletero > 0) 
+            if (harcos.hp > 0) 
             {
-                harcos.tapasztalat += 5;
+                harcos.xp += 5;
             }
-            if (masikHarcos.eletero > 0) 
+            if (masikHarcos.hp > 0) 
             {
-                masikHarcos.tapasztalat += 5;
+                masikHarcos.xp += 5;
             }
-            if (harcos.eletero==0)
+            if (harcos.hp==0)
             {
-                masikHarcos.tapasztalat += 10;
+                masikHarcos.xp += 10;
             }
-            if (masikHarcos.eletero==0)
+            if (masikHarcos.hp==0)
             {
-                harcos.tapasztalat += 10;
+                harcos.xp += 10;
             }
         }
 
